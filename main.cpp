@@ -92,10 +92,12 @@ int main() {
 
    cart1(name, date);
 
-   PrintMenu();
-   cout << "Choose an option:" << endl;
-   cin << option;
-   ExecuteMenu(option, cart1);
+   do {
+      PrintMenu();
+      cout << "Choose an option:" << endl;
+      cin << option;
+      ExecuteMenu(option, cart1);
+   }while(option != "q");
    
       
    
