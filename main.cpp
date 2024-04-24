@@ -12,10 +12,66 @@ void PrintMenu() {
 void ExecuteMenu(char option, ShoppingCart& theCart) {
    switch(option){
       case "a":
+         string itemName, itemDescription;
+         int itemPrice, itemQuantity;
+         cout << "ADD ITEM TO CART" << endl;
+         cout << "Enter the item name:" << endl;
+         getLine(cin, itemName);
+         cout << "Enter the item description:" << endl;
+         getLine(cin, itemDescription);
+         cout << "Enter the item price:" << endl;
+         cin >> itemPrice;
+         cout << "Enter the item quantity:" << endl;
+         cin >> itemQuantity;
+
+         ItemToPurchase newItem;
+         newItem.SetName(itemName);
+         newItem.SetDescription(itemDescription);
+         newItem.SetPrice(itemPrice);
+         newItem.SetQuantity(itemQuantity);
+
+         theCart.AddItem(newItem);
       case "d":
+         string itemRemove;
+         cin.ignore();
+         cout << "REMOVE ITEM FROM CART" << endl;
+         cout << "Enter name of item to remove:" << endl;
+         getLine(cin, itemRemove);
+         theCart.RemoveItem(itemRemove);
       case "c":
+         string itemName;
+         string newQuant;
+         cin.ignore();
+         cout << "CHANGE ITEM QUANTITY" << endl;
+         cout << "Enter the item name:" << endl;
+         getLine(cin, itemName);
+         cout << "Enter the new quantity:" << endl;
+         cin >> newQuant;
+
+         ItemToPurchase item;
+         item.SetName(itemName);
+         item.SetQuantity(newQuant);
+         theCart.ModifyItem(item);
+         
       case "i":
+         cout << "OUTPUT ITEMS' DESCRIPTIONS" << endl;
+         cout << theCart.GetCustomerName() << "'s Shopping Cart - " << theCart.GetDate() << endl << endl;
+         cout << "Item Descriptions" << endl;
+         for (int i = 0; i < items.size(); i++){
+            cout << items[i].GetName() << ": " << items[i].GetDescription() << endl;
+         }
+         
       case "o":
+         cout << "OUTPUT SHOPPING CART" << endl;
+         cout << theCart.GetCustomerName() << "'s Shopping Cart - " << theCart.GetDate() << endl;
+         cout << "Number of Items: " << theCart.GetNumItemsInCart() << endl;
+         auto items = theCart.GetCartItems();
+         int totalCost = 0;
+         for (int i = 0; i < items.size(); i++){
+            totalCost = (items[i].GetPrice * items[i].GetQuantity) + totalCost;
+            cout << items[i].GetName() << items[i].GetQuantity << " @ $" << items[i].GetPrice << " = $" << items[i].GetPrice * items[i].GetQuantity << endl;
+         }
+         cout << "Total: $" << totalCost;
       case "q":
       
    
@@ -39,7 +95,7 @@ int main() {
    PrintMenu();
    cout << "Choose an option:" << endl;
    cin << option;
-   while (option != "q"){
+   ExecuteMenu(option, cart1);
    
       
    
