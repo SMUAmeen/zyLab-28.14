@@ -69,7 +69,7 @@ int GetCostOfCart() {
 }
 
  void PrintTotal(){
- cout << GetCustomerName() << "'s Shopping Cart" - " << GetDate() << endl;
+ cout << GetCustomerName() << "'s Shopping Cart" << GetDate() << endl;
  cout << "Number of Item's: " << GetNumItemsInCart() << endl;
  cout << endl
  for (const auto& item : cartItems) {
@@ -80,7 +80,7 @@ int GetCostOfCart() {
  }
 
  void PrintDescriptions(){
-  cout << GetCustomerName() << "'s Shopping Cart" - " << GetDate() << endl;
+  cout << GetCustomerName() << "'s Shopping Cart" << GetDate() << endl;
   cout << endl;
   cout << "Item Descriptions: " << endl;
   for (const auto& item : cartItems) {
