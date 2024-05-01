@@ -5,8 +5,13 @@ using namespace std;
 #include "ShoppingCart.h"
 
 void PrintMenu() {
-   cout << "MENU" << endl << "a - Add item to cart" << endl << "d - Remove item from cart" << endl << "c - Change item quantity" << endl
-   << "i - Output items' descriptions" << endl << "o - Output shopping cart" << endl << "q - Quit" << endl;
+    cout << "MENU" << endl;
+    cout << "a - Add item to cart" << endl;
+    cout << "d - Remove item from cart" << endl;
+    cout << "c - Change item quantity" << endl;
+    cout << "i - Output items' descriptions" << endl;
+    cout << "o - Output shopping cart" << endl;
+    cout << "q - Quit" << endl;
 }
 
 void ExecuteMenu(char option, ShoppingCart& theCart) {
