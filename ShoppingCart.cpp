@@ -1,3 +1,8 @@
+#include <iosstream>
+#include <string>
+
+using namespace std;
+
 class ShoppingCart{
 
 ShoppingCart::ShoppingCart(){
