@@ -15,87 +15,78 @@ void PrintMenu() {
 }
 
 void ExecuteMenu(char option, ShoppingCart& theCart) {
-   switch(option){
-      case "a":
-         string itemName, itemDescription;
-         int itemPrice, itemQuantity;
+    string temp;
+    double prices;
+    int temp2;
+    switch(option){
+      case "a": {
          cout << "ADD ITEM TO CART" << endl;
-         cout << "Enter the item name:" << endl;
-         getLine(cin, itemName);
-         cout << "Enter the item description:" << endl;
-         getLine(cin, itemDescription);
-         cout << "Enter the item price:" << endl;
-         cin >> itemPrice;
-         cout << "Enter the item quantity:" << endl;
-         cin >> itemQuantity;
-
          ItemToPurchase newItem;
-         newItem.SetName(itemName);
-         newItem.SetDescription(itemDescription);
-         newItem.SetPrice(itemPrice);
-         newItem.SetQuantity(itemQuantity);
+         cin.ignore();
+         cout << "Enter the item name:" << endl;
+         getLine(cin, temp);
+         newItem.SetName(temp);
+         cout << "Enter the item description:" << endl;
+         getLine(cin, temp);
+         newItem.SetDescription(temp);
+         cout << "Enter the item price:" << endl;
+         cin >> prices;
+         newItem.SetPrice(prices);
+         cout << "Enter the item quantity:" << endl;
+         cin >> temp2;
 
-         theCart.AddItem(newItem);
-      case "d":
-         string itemRemove;
-         cin.ignore();
+         newItem.SetQuantity(temp2);
+        theCart.AddItem(newItem);
+        break;
+      }
+      case "d":{
          cout << "REMOVE ITEM FROM CART" << endl;
-         cout << "Enter name of item to remove:" << endl;
-         getLine(cin, itemRemove);
-         theCart.RemoveItem(itemRemove);
-      case "c":
          string itemName;
-         string newQuant;
          cin.ignore();
+         cout << "Enter name of item to remove:" << endl;
+         getLine(cin, itemName);
+         theCart.RemoveItem(itemName);
+         break;
+      }
+      case "c":{
          cout << "CHANGE ITEM QUANTITY" << endl;
+          string itemName;
+         string newQuantity;
+         cin.ignore();
          cout << "Enter the item name:" << endl;
          getLine(cin, itemName);
          cout << "Enter the new quantity:" << endl;
-         cin >> newQuant;
+         cin >> newQuantity;
 
-         ItemToPurchase item;
-         item.SetName(itemName);
-         item.SetQuantity(newQuant);
-         theCart.ModifyItem(item);
+         ItemToPurchase items(itemName, "none", 0.0, newQuantity);
+        theCart.ModifyItem(items);
+        break;
+      }
          
       case "i":
          cout << "OUTPUT ITEMS' DESCRIPTIONS" << endl;
-         cout << theCart.GetCustomerName() << "'s Shopping Cart - " << theCart.GetDate() << endl << endl;
-         cout << "Item Descriptions" << endl;
-         for (int i = 0; i < items.size(); i++){
-            cout << items[i].GetName() << ": " << items[i].GetDescription() << endl;
-         }
-         
+         theCart.PrintDescriptions();
+         break;
       case "o":
-         cout << "OUTPUT SHOPPING CART" << endl;
-         cout << theCart.GetCustomerName() << "'s Shopping Cart - " << theCart.GetDate() << endl;
-         cout << "Number of Items: " << theCart.GetNumItemsInCart() << endl;
-         auto items = theCart.GetCartItems();
-         int totalCost = 0;
-         for (int i = 0; i < items.size(); i++){
-            totalCost = (items[i].GetPrice * items[i].GetQuantity) + totalCost;
-            cout << items[i].GetName() << items[i].GetQuantity << " @ $" << items[i].GetPrice << " = $" << items[i].GetPrice * items[i].GetQuantity << endl;
-         }
-         cout << "Total: $" << totalCost;
+         theCart.PrintTotal();
+        break;
       case "q":
-      
-   
+        //cout << "Exiting program..." << endl;
+        break;
+    }
 }
 
 int main() {
-   string name, date;
-   ShoppingCart cart1;
-   string option;
-
+   string customerName, todayDate;
    cout << "Enter customer's name:" << endl;
-   getLine(cin, name);
+   getLine(cin, customerName);
    cout << "Enter today's date:" << endl;
-   getLine(cin, date);
+   getLine(cin, todayDate);
 
-   cout << "Customer name: " << name << endl;
-   cout << "Today's date: " << date << endl;
+   cout << endl << "Customer name: " << customerName << endl;
+   cout << "Today's date: " << todayDate << endl;
 
-   cart1(name, date);
+   ShoppingCart theCart(customerName, todayDate);
 
    do {
       PrintMenu();
