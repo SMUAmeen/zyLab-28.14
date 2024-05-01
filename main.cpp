@@ -88,15 +88,18 @@ int main() {
 
    ShoppingCart theCart(customerName, todayDate);
 
-   do {
-      PrintMenu();
-      cout << "Choose an option:" << endl;
-      cin << option;
-      ExecuteMenu(option, cart1);
-   }while(option != "q");
-   
-      
-   
+   char choices = 0;
+   while (choices != 'q'){
+       if(choices == 0 || choices == 'a' || choices == 'd' || choices == 'c'
+           || choices == 'i' || choices == 'o' || choices == 'q'){
+               cout << endl;
+               PrintMenu();
+               cout << endl;
+       }
+       cout << "Choose an option:" << endl;
+       cin >> choices;
+       ExecuteMenu(choices, theCart);
+   }
    
    return 0;
 }
