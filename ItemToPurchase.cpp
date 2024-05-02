@@ -27,7 +27,7 @@ void ItemToPurchase::SetQuantity(int q){
 }
 
 void ItemToPurchase::GetName() const{
-  return itemName;
+  return name;
 }
 
 void ItemToPurchase::GetDescription() const{
@@ -35,7 +35,7 @@ void ItemToPurchase::GetDescription() const{
 }
 
 void ItemToPurchase::GetPrice() const{
-  return itemPrice;
+  return price;
 }
 
 void ItemToPurchase::GetQuantity() const{
