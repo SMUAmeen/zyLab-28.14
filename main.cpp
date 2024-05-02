@@ -1,3 +1,7 @@
+//https://github.com/SMUAmeen/zyLab-28.14/tree/main
+//Daniyal Saleem
+//Ameen Zia
+//Truman Barden
 #include <iostream>
 #include <iomanip>
 using namespace std;
